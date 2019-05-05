@@ -15,6 +15,7 @@ class App extends Component {
     }
     this.message = this.message.bind(this);
     this.query = "items";
+    this.tag = "sql";
   }
 
   componentDidMount(){
@@ -26,10 +27,12 @@ class App extends Component {
     }
 
 
-  message (query){
+  message (query, tag){
     this.query = query;
+    this.tag = tag;
     console.log(this.query);
-    getAllJsonp(this.query).then((myjson) => {
+    console.log(this.tag);
+    getAllJsonp(this.query, this.tag).then((myjson) => {
         //测试用例是items
         console.log(myjson.result);
         this.setState({

@@ -4,7 +4,8 @@ class Search extends Component{
   constructor(props){
       super(props);
       this.state = {
-          query:''
+          query:'',
+          tag: '',
       }
       this.handleEnter = this.handleEnter.bind(this);
       this.searchButton = this.searchButton.bind(this);
@@ -12,16 +13,17 @@ class Search extends Component{
   }
 
 
-  updateQuery(query){
+  updateQuery(query, tag){
       this.setState({
-          query: query.trim()
+          query: query.trim(),
+          tag: tag.trim()
       })
 
   }
 
   handleEnter(event){
       if(event.charCode === 13 ){
-          this.props.onMessage(this.state.query);
+          this.props.onMessage(this.state.query, this.state.tag);
           console.log(event.charCode);
       }
 
@@ -29,7 +31,7 @@ class Search extends Component{
   }
 
   searchButton(event){
-      this.props.onMessage(this.state.query);
+      this.props.onMessage(this.state.query, this.state.tag);
   }
 
   render(){
@@ -38,11 +40,11 @@ class Search extends Component{
       if(items){
           screen =  (
               <ol className='contact-list'>
-              {items.result.map((item,index) =>
+              {items.data.map((item,index) =>
                   <li key={index} className='contact-list-item'>
                       <div className='contact-details'>
-                          <p>{item[0]}</p>
-                          <p>{item[1]}</p>
+                          <p><code>{item.code}</code></p>
+                          <p>{item.id}</p>
                       </div>
                   </li>
               )}
@@ -54,17 +56,22 @@ class Search extends Component{
 
       return (
           <div>
-
               <div className='list-contacts'>
                   <div className='list-contacts-top'>
-                      <input
-                          onKeyPress={(event) => {this.handleEnter(event)}}
-                          className='search-contacts'
-                          type='text'
-                          placeholder='Search Here'
-                          onChange={(event) => {this.updateQuery(event.target.value)}}
-                      />
-                      <button className='button-cancel' onClick= {this.searchButton}>Search</button>
+                    <input
+                        onKeyPress={(event) => {this.handleEnter(event)}}
+                        className='search-contacts'
+                        type='text'
+                        placeholder='Query Here'
+                        onChange={(event) => {this.updateQuery(event.target.value, this.state.tag)}}
+                    />
+                    <input
+                        className='search-contacts'
+                        type='text'
+                        placeholder='tag Here'
+                        onChange={(event) => {this.updateQuery(this.state.query, event.target.value)}}
+                    />
+                    <button className='button-cancel' onClick= {this.searchButton}>Search</button>
                   </div>
               </div>
 
