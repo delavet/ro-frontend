@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 body {
   margin: 0;
   padding: 0;
@@ -5,7 +6,7 @@ body {
 }
 
 .list-contacts {
-  padding-top: 60px;
+  padding: 20px;
 }
 .list-contacts-top {
   position: fixed;

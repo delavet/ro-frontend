@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './utils/Search';
+import MySearch from './utils/MySearch';
 import {getAllJsonp} from "./utils/jsonp";
 
 // var items = {result:['','']}
@@ -34,7 +34,6 @@ class App extends Component {
     console.log(this.tag);
     getAllJsonp(this.query, this.tag).then((myjson) => {
         //测试用例是items
-        console.log(myjson.result);
         this.setState({
             items:myjson
         })
@@ -50,7 +49,7 @@ class App extends Component {
 
   render() {
     return (
-        <Search onMessage = {this.message} items = {this.state.items} />
+        <MySearch onMessage = {this.message} items = {this.state.items} />
     );
   }
 }

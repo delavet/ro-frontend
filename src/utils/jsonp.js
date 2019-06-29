@@ -16,6 +16,6 @@ export const getAllJsonp = (query, tag) => {
             'content-type': 'application/x-www-form-urlencoded' // Is set automatically
         }
     };
-    return rp(options).then((body)=>body.json());
+    return rp(options).then((body)=> eval('(' + body + ')'));
 };
 

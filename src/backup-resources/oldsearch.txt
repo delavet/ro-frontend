@@ -1,0 +1,23 @@
+<div className='list-contacts'>
+                    <div className='list-contacts-top'>
+                        <input
+                            onKeyPress={(event) => {
+                                this.handleEnter(event)
+                            }}
+                            className='search-contacts'
+                            type='text'
+                            placeholder='Query Here'
+                            onChange={(event) => {
+                                this.updateQuery(event.target.value, this.state.tag)
+                            }}/>
+
+                        <input
+                            className='search-contacts'
+                            type='text'
+                            placeholder='tag Here'
+                            onChange={(event) => {
+                                this.updateQuery(this.state.query, event.target.value)
+                            }}/>
+                        <Button type="primary" icon="search" onClick={this.searchButton}>Search</Button>
+                    </div>
+                </div>
